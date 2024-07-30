@@ -68,7 +68,8 @@ const loginUser= async (req,res)=>{
         res.json({
             message : "User logged in successfully",
             name : Username,
-            token : token
+            token : token,
+            id : Username._id
         })
 
     } catch (error) {
@@ -76,4 +77,30 @@ const loginUser= async (req,res)=>{
     }
 }
 
-module.exports = { loginUser, registerUser}
+const getUserDetails = async (req, res) => {
+    try {
+        const { Username } = req.body; 
+
+        const existingUser = await User.findOne({ Username : Username });
+
+        if(existingUser){
+            return res.json({
+                message: "User found",
+                user: existingUser
+            });
+        }
+
+        if (!existingUser) {
+             res.json({ message: "Please enter a valid username" });
+        }
+    } catch (error) {
+        console.error("Error fetching user details:", error); 
+        res.json({
+            message: "Internal server error",
+            error: error.message
+        });
+    }
+};
+
+
+module.exports = { loginUser, registerUser, getUserDetails}

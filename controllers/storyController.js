@@ -11,7 +11,7 @@ const createStory = async (req, res) => {
         const newStories = await Story.insertMany(storiesData);
 
         res.status(201).json({
-            message: "Stories created successfully, Refresh the page to see the results",
+            message: "Stories created successfully",
             stories: newStories,
         });
     } catch (error) {
