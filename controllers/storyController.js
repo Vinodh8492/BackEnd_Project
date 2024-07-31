@@ -5,7 +5,7 @@ const createStory = async (req, res) => {
         const storiesData = req.body;
        
 
-        if (!storiesData || storiesData.length === 0) {
+        if (!storiesData  || storiesData.length === 0) {
             return res.status(400).json({ message: "Invalid or empty request body" });
         }
 
@@ -36,7 +36,8 @@ const updateStory = async (req,res)=>{
             Heading,
             Description,
             Image,
-            Category
+            Category,
+            username
         } = req.body;
 
         if (!Heading || ! Description || !Image || !Category){
@@ -66,47 +67,33 @@ const updateStory = async (req,res)=>{
     }
 }
 
-const allStories= async (req,res)=>{
+const allStories = async (req, res) => {
     try {
-
-        const Category = req.query.Category;
+        const { Category } = req.query;
 
         let filter = {};
-        let formattedCategory;
         if (Category) {
-            formattedCategory = Category.split(",");
-
-            if (formattedCategory) {
-                const regexArray = formattedCategory.map(
-                    (value) => new RegExp(value, "i")
-                );
-
-                filter = {
-                    skills: { $in: regexArray },
-                };
-            }
+            const formattedCategory = Category.split(",").map(value => new RegExp(value, "i"));
+            filter.Category = { $in: formattedCategory };
         }
 
-        const storyList = await Story.find(
-            {
-                Category: { $regex: Category, $options: "i" },
-                ...filter,
-            },
-            {
-                Heading: 1,
-                Description: 1,
-                Image: 1,
-                Category: 1,
-                username:1
-            }
-        );
+        const storyList = await Story.find(filter, {
+            Heading: 1,
+            Description: 1,
+            Image: 1,
+            Category: 1,
+            username: 1
+        });
 
-        res.json({ data: storyList });
-        
+        res.status(200).json({ data: storyList });
     } catch (error) {
-        res.json(error)
+        console.error('Error fetching stories:', error);
+        res.status(500).json({ message: 'Internal server error', error: error.message });
     }
-}
+};
+
+module.exports = allStories;
+
 
 const getStoriesById = async (req,res)=>{
     try {
