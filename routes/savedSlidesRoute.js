@@ -4,6 +4,6 @@ const { saveSlides, getSavedSlides } = require('../controllers/savedSlidesContro
 
 
 savedSlidesRouter.post('/:username', saveSlides);
-savedSlidesRouter.get('/existing/:username', getSavedSlides);
+savedSlidesRouter.get('/existing/:userId', getSavedSlides);
 
 module.exports = savedSlidesRouter;

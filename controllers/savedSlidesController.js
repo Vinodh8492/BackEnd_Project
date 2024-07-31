@@ -32,16 +32,17 @@ const saveSlides = async (req, res) => {
     }
   };
 
+
   const getSavedSlides = async (req, res) => {
-    const { username } = req.params; // Get username from route params
+    const { userId } = req.params; // Get username from route params
   
-    if (!username) {
+    if (!userId) {
       return res.status(400).json({ message: 'Username is required' });
     }
   
     try {
       // Find the user
-      const user = await User.findOne({ Username: username });
+      const user = await User.findOne({ Username: userId });
   
       if (user) {
         return res.status(200).json({ savedData: user.savedSlides });
