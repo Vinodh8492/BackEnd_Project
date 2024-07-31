@@ -5,6 +5,6 @@ const { saveSlides, getSavedSlides, deleteSlide } = require('../controllers/save
 
 savedSlidesRouter.post('/:username', saveSlides);
 savedSlidesRouter.get('/existing/:userId', getSavedSlides);
-savedSlidesRouter.delete('/delete/:username', deleteSlide)
+savedSlidesRouter.post('/delete/:username', deleteSlide)
 
 module.exports = savedSlidesRouter;
