@@ -3,9 +3,9 @@ const Story = require('../model/story');
 const createStory = async (req, res) => {
     try {
         const storiesData = req.body;
-        const username = req.body
+       
 
-        if (!storiesData || !Array.isArray(storiesData) || storiesData.length === 0) {
+        if (!storiesData || storiesData.length === 0) {
             return res.status(400).json({ message: "Invalid or empty request body" });
         }
 

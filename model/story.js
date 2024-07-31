@@ -18,7 +18,8 @@ const storySchema = mongoose.Schema({
         required : true
     },
     username :{
-        type : String
+        type : String,
+        required: true
     }
 })
 
