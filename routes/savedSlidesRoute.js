@@ -1,9 +1,10 @@
 const express = require('express');
-const likedSlideRouter = express.Router();
-const { likeSlides, deleteLike} = require('../controllers/likeSlidesController'); 
+const savedSlidesRouter = express.Router();
+const { saveSlides, getSavedSlides, deleteSlide } = require('../controllers/savedSlidesController'); 
 
 
-savedSlidesRouter.post('/:username', likeSlides);
-savedSlidesRouter.post('/delete/:username', deleteLike)
+savedSlidesRouter.post('/:username', saveSlides);
+savedSlidesRouter.get('/existing/:userId', getSavedSlides);
+savedSlidesRouter.post('/delete/:username', deleteSlide)
 
-module.exports = likedSlideRouter;
+module.exports = savedSlidesRouter;
