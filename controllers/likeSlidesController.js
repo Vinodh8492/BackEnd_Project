@@ -33,6 +33,28 @@ const likeSlides = async (req, res) => {
 
 
 
+  const getLikedSlides = async (req, res) => {
+    const { userId } = req.params; 
+  
+    if (!userId) {
+      return res.status(400).json({ message: 'Username is required' });
+    }
+  
+    try {
+      const user = await User.findOne({ Username: userId });
+  
+      if (user) {
+        return res.status(200).json({ likedData: user.likedSlides });
+      } else {
+        return res.status(404).json({ message: 'User not found' });
+      }
+    } catch (error) {
+      console.error('Error fetching liked slides:', error);
+      return res.status(500).json({ message: 'Server error' });
+    }
+  };
+
+
   const deleteLike = async (req, res) => {
     const { slideId } = req.body;
     const { username } = req.params; 
@@ -64,4 +86,4 @@ const likeSlides = async (req, res) => {
 
 
 
-module.exports = { likeSlides, deleteLike };
+module.exports = { likeSlides, deleteLike, getLikedSlides };
