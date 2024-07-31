@@ -17,6 +17,9 @@ const storySchema = mongoose.Schema({
         type : Array,
         required : true
     },
+    username :{
+        type : String
+    }
 })
 
 const Story = mongoose.model('Story', storySchema);

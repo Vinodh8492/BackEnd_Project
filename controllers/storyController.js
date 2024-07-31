@@ -3,6 +3,7 @@ const Story = require('../model/story');
 const createStory = async (req, res) => {
     try {
         const storiesData = req.body;
+        const username = req.body
 
         if (!storiesData || !Array.isArray(storiesData) || storiesData.length === 0) {
             return res.status(400).json({ message: "Invalid or empty request body" });
@@ -114,7 +115,7 @@ const getStoriesById = async (req,res)=>{
             return res.status(400).json({errorMessage : "Bad Request"})
         }
 
-        const storyDetails = await Story.findById(storyId, {Heading : 1, Description :1, Image:1, Category:1});
+        const storyDetails = await Story.findById(storyId, {Heading : 1, Description :1, Image:1, Category:1, username : 1});
         res.json({data : storyDetails})
     } catch (error) {
         res.json(error)
