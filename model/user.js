@@ -8,7 +8,11 @@ const userSchema = mongoose.Schema({
     Password : {
         type : String,
         required : true
-    }
+    },
+    savedSlides: {
+        type: [String], 
+        default: []
+      }
 })
 
 const User = mongoose.model('User', userSchema);

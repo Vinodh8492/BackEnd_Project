@@ -92,8 +92,6 @@ const allStories = async (req, res) => {
     }
 };
 
-module.exports = allStories;
-
 
 const getStoriesById = async (req,res)=>{
     try {
@@ -109,5 +107,9 @@ const getStoriesById = async (req,res)=>{
         res.json(error)
     }
 }
+
+
+
+
 
 module.exports = { createStory, updateStory, allStories, getStoriesById };

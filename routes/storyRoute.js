@@ -9,5 +9,6 @@ storyRouter.get('/getall', allStories)
 storyRouter.get('/details/:storyId',getStoriesById)
 
 
+
 module.exports = storyRouter;
 

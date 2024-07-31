@@ -1,4 +1,5 @@
 const User = require('../model/user');
+const Story = require('../model/story')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -77,7 +78,31 @@ const loginUser= async (req,res)=>{
     }
 }
 
+const getUserDetails = async (req, res) => {
+    try {
+        const { Username } = req.body; 
+
+        const existingUser = await User.findOne({ Username : Username });
+
+        if(existingUser){
+            return res.json({
+                message: "User found",
+                user: existingUser
+            });
+        }
+
+        if (!existingUser) {
+             res.json({ message: "Please enter a valid username" });
+        }
+    } catch (error) {
+        console.error("Error fetching user details:", error); 
+        res.json({
+            message: "Internal server error",
+            error: error.message
+        });
+    }
+};
 
 
 
-module.exports = { loginUser, registerUser}
+module.exports = { loginUser, registerUser, getUserDetails}
