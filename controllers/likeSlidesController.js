@@ -86,4 +86,4 @@ const likeSlides = async (req, res) => {
 
 
 
-module.exports = { likeSlides,  getLikedSlides,deleteLike };
+module.exports = { likeSlides, getLikedSlides, deleteLike };
