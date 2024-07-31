@@ -6,6 +6,7 @@ const port =  3333;
 const userRouter = require('./routes/userRoute');
 const storyRouter = require('./routes/storyRoute');
 const savedSlidesRouter = require('./routes/savedSlidesRoute')
+const likedSlideRouter = require('./routes/likedSlideRouter')
 const cors = require('cors')
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use('/user',userRouter);
 app.use('/story', storyRouter)
 app.use('/saved',savedSlidesRouter)
+app.use('/liked',likedSlideRouter)
 
 const mongoose = require('mongoose');
 const db = mongoose.connect(process.env.MONGODB_URI)

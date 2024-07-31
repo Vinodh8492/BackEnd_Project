@@ -12,7 +12,12 @@ const userSchema = mongoose.Schema({
     savedSlides: {
         type: [String], 
         default: []
+      },
+    likedSlides: {
+        type: [String], 
+        default: []
       }
+
 })
 
 const User = mongoose.model('User', userSchema);
