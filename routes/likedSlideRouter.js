@@ -3,7 +3,7 @@ const likedSlidesRouter = express.Router();
 const {likeSlides, getLikedSlides, deleteLike } = require('../controllers/likeSlidesController'); 
 
 
-likedSlidesRouter.post('/:username', likeSlides);
+likedSlidesRouter.post('/like/:username', likeSlides);
 
 likedSlidesRouter.get('/existing/:userId', getLikedSlides);
 
