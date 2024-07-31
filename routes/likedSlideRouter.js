@@ -5,7 +5,7 @@ const {likeSlides, deleteLike, getLikedSlides } = require('../controllers/likeSl
 
 likedSlidesRouter.post('/:username', likeSlides);
 
-likedSlidesRouter.post('/existing/:userId', likeSlides);
+likedSlidesRouter.get('/existing/:userId', likeSlides);
 
 likedSlidesRouter.post('/delete/:username', deleteLike)
 
