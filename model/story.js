@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
 
 const storySchema = mongoose.Schema({
-    Heading : {
-        type : String,
-        required : true
+    Heading: {
+        type: String,
+        required: true
     },
-    Description : {
-        type : String,
-        required : true
+    Description: {
+        type: String,
+        required: true
     },
-    Image : {
-        type : String,
-        required : true
+    Image: {
+        type: String,
+        required: true
     },
-    Category : {
-        type : Array,
-        required : true
+    Category: {
+        type: Array,
+        required: true
     },
-    username :{
-        type : String,
+    username: {
+        type: String,
         required: true
     }
 })

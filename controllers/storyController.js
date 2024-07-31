@@ -3,14 +3,11 @@ const Story = require('../model/story');
 const createStory = async (req, res) => {
     try {
         const storiesData = req.body;
-       
 
-        if (!storiesData  || storiesData.length === 0) {
+        if (!storiesData || storiesData.length === 0) {
             return res.status(400).json({ message: "Invalid or empty request body" });
         }
-
         const newStories = await Story.insertMany(storiesData);
-
         res.status(201).json({
             message: "Stories created successfully",
             stories: newStories,
@@ -21,14 +18,13 @@ const createStory = async (req, res) => {
 };
 
 
-const updateStory = async (req,res)=>{
+const updateStory = async (req, res) => {
     try {
 
         const storyId = req.params.storyId;
-
-        if(!storyId){
-             return res.json({
-                message : "Invalid credentials"
+        if (!storyId) {
+            return res.json({
+                message: "Invalid credentials"
             })
         }
 
@@ -40,28 +36,25 @@ const updateStory = async (req,res)=>{
             username
         } = req.body;
 
-        if (!Heading || ! Description || !Image || !Category){
+        if (!Heading || !Description || !Image || !Category) {
             return res.json({
-                message : "Please fill all the details "
+                message: "Please fill all the details "
             })
         }
 
-        const updatedStory = await Story.updateOne({_id : storyId}, {
-            $set : {
+        const updatedStory = await Story.updateOne({ _id: storyId }, {
+            $set: {
                 Heading,
                 Description,
                 Image,
                 Category
             }
         })
-
-        if(updateStory){
+        if (updateStory) {
             res.json({
-                message : "Story updated successfully"
+                message: "Story updated successfully"
             })
         }
-        
-    
     } catch (error) {
         res.status(500).json(error)
     }
@@ -93,22 +86,20 @@ const allStories = async (req, res) => {
 };
 
 
-const getStoriesById = async (req,res)=>{
+const getStoriesById = async (req, res) => {
     try {
         const storyId = req.params.storyId;
 
-        if(!storyId){
-            return res.status(400).json({errorMessage : "Bad Request"})
+        if (!storyId) {
+            return res.status(400).json({ errorMessage: "Bad Request" })
         }
 
-        const storyDetails = await Story.findById(storyId, {Heading : 1, Description :1, Image:1, Category:1, username : 1});
-        res.json({data : storyDetails})
+        const storyDetails = await Story.findById(storyId, { Heading: 1, Description: 1, Image: 1, Category: 1, username: 1 });
+        res.json({ data: storyDetails })
     } catch (error) {
         res.json(error)
     }
 }
-
-
 
 
 

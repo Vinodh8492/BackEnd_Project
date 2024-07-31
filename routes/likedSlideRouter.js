@@ -1,6 +1,6 @@
 const express = require('express');
 const likedSlidesRouter = express.Router();
-const {likeSlides, getLikedSlides, deleteLike } = require('../controllers/likeSlidesController'); 
+const { likeSlides, getLikedSlides, deleteLike } = require('../controllers/likeSlidesController');
 
 
 likedSlidesRouter.post('/like/:username', likeSlides);

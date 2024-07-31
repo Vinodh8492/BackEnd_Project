@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
 const User = require('../model/user')
 
-const verifyToken = (req, res, next) => {
+const verifyToken = (req, res) => {
     try {
         const token = req.header("Authorization");
-      
 
         if (!token && token.length < 2) {
             return res.status(401).json({ message: "Unauthorized access" });
@@ -16,8 +15,6 @@ const verifyToken = (req, res, next) => {
         if (!isUserValid) {
             return res.status(401).json({ message: "Unauthorized access" });
         }
-
-       
     } catch (error) {
         console.log(error);
         res.status(401).json({ message: "Invalid token" });
