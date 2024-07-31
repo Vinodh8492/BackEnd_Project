@@ -97,6 +97,7 @@ const allStories= async (req,res)=>{
                 Description: 1,
                 Image: 1,
                 Category: 1,
+                username:1
             }
         );
 
