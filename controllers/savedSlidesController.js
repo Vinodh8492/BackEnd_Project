@@ -44,7 +44,7 @@ const saveSlides = async (req, res) => {
       const user = await User.findOne({ Username: username });
   
       if (user) {
-        return res.status(200).json({ savedSlides: user.savedSlides });
+        return res.status(200).json({ savedData: user.savedSlides });
       } else {
         return res.status(404).json({ message: 'User not found' });
       }
